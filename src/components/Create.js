@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import { Container, Button, Form } from 'react-bootstrap';
-import fireApp from '../Credenciales';
+import { useNavigate } from 'react-router-dom'//para enrutar
+import { collection, addDoc, getFirestore } from 'firebase/firestore'// para trabajar con firebase
+import fireApp from '../Credenciales'
 
-
-import { collection, addDoc } from 'firebase/firestore'// para trabajar con firebase
+const db = getFirestore(fireApp)
 
 
 const Create = () => {
@@ -12,9 +12,9 @@ const Create = () => {
     const [ producto, setproducto ] = useState('')//se inicia en '' por ser string
     const [ cantidad, setcantidad ] = useState()
     const [ disponibilidad, setdisponibilidad ] = useState('')
-    //const navigate = useNavigate()
+    const navigate = useNavigate()
   
-    const productoCollection = collection(fireApp, 'pedido')
+    const productoCollection = collection(db, 'pedido')
   
     /*const confirmstore = () => {// aca creo el mensase en una funcion flecha
       MySwal.fire({
@@ -30,7 +30,7 @@ const Create = () => {
       e.preventDefault()
       await addDoc( productoCollection, { producto: producto, cantidad: cantidad, disponibilidad: disponibilidad } )
       //confirmstore()// se invoca el mensaje de confirmacion
-      //navigate('/')//aca nos lleva a la rura raiz = show
+      navigate('/')//aca nos lleva a la rura raiz = show
       //console.log(e.target[1].value) muestra el nombre
       //console.log(e.target[1].value) muestra la cedula
     }

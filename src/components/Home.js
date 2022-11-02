@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import Create from './Create';
-import { Link } from 'react-router-dom'
 
 import fireApp from '../Credenciales';
 import { getAuth, signOut } from 'firebase/auth';
 import { Container, Button, Table } from 'react-bootstrap';
-import { collection, doc, getDocs, getFirestore, deleteDoc } from 'firebase/firestore'
-import Loguin from './Loguin';
-import App from '../App';
+import { collection, doc, getDocs, getFirestore, deleteDoc } from 'firebase/firestore';
+import Prueba from './Prueba';
+import { Link } from 'react-router-dom';
 const auth = getAuth(fireApp);
 const firestore = getFirestore(fireApp);
 
 
 
-
-let i = 0
+//let i = 0
 const Home = () => {
   //1 primero se configura los Hooks "ganchos"
   const [pedido, setPedido] = useState([])
@@ -51,13 +48,12 @@ const Home = () => {
               
               <div className="row">
                   <div className="col">           
-                      <Button
-                        onClick={<Link to="/Create">
-                        <h2>create </h2>
-                      </Link>}
-                      >
-                        hola create
-                      </Button>
+                      
+                      <Link to="/Create">
+                        <Button>
+                          Create
+                        </Button>
+                      </Link>
 
                       <div>
                       </div>
