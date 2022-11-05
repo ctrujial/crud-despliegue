@@ -1,13 +1,14 @@
 import './App.css';
-import React, {useState, seEffect} from "react";
+import React, {useState} from "react";
 import Home from "./components/Home";
 import Loguin from "./components/Loguin";
 import Create from "./components/Create";
+import Edit from "./components/Edit";
 
 // importar para enrutar
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
-import fireApp from "./Credenciales";
+import {fireApp} from "./Credenciales";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const auth = getAuth(fireApp)
@@ -23,12 +24,14 @@ const App = () => {
     }
   });
 
+
   return (
     <div>
       <BrowserRouter>
         <Routes>          
           <Route path='/' element={ usuarioGlobal ?  <Home/> : <Loguin/> } ></Route>
           <Route path='/Create' element={ <Create/> } ></Route>
+          <Route path='/Edit' element={ <Edit/> } ></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'//para enrutar
 import { collection, addDoc, getFirestore } from 'firebase/firestore'// para trabajar con firebase
-import fireApp from '../Credenciales'
+import {fireApp} from '../Credenciales'
 
 const db = getFirestore(fireApp)
 

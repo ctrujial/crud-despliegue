@@ -1,5 +1,8 @@
 import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
+
+import { getFirestore } from '@firebase/firestore'
+
 const firebaseConfig = {
   apiKey: "AIzaSyB83gCRE6gcOTHtL-XYrxup8VsENM4x5To",
   authDomain: "projectreact-1951b.firebaseapp.com",
@@ -11,7 +14,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const fireApp = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 
-export default fireApp;
+export const {fireApp} = getFirestore(app);

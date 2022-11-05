@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import { Container, Stack, Button, Form } from "react-bootstrap";
 
-import fireApp from "../Credenciales";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import {fireApp} from "../Credenciales";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, AuthCredential } from "firebase/auth"
+import { doc } from "firebase/firestore";
 const auth = getAuth(fireApp)
 
 
@@ -20,15 +21,16 @@ export const Loguin = () => {
         if (registrandose){
             //si se registra
             const usuario = await createUserWithEmailAndPassword(auth, correo, contrasena)
-            console.log(usuario)
+
+            if (usuario !== doc.usuario){
+                alert("paila")
+            }
+            
         } else{
             signInWithEmailAndPassword(auth, correo, contrasena)
         }
 
- 
     }
-
-
     return(
         <Container>
             <Stack gap={3}>
@@ -40,7 +42,7 @@ export const Loguin = () => {
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" />
                     <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
+                    Acceso permitido a personal autorizado!
                     </Form.Text>
                 </Form.Group>
 
@@ -55,10 +57,6 @@ export const Loguin = () => {
                     {registrandose ? "Registrate!" : "Inicia Sesion"}
                 </Button>
                 </Form>
-
-                <Button variant="primary" type="submit">
-                    Ingresar con google
-                </Button>
 
                 <Button variant="info" onClick={() => setRegistrandose(!registrandose)}>
                     {registrandose ? "¿ Ya tienes una cuenta ?  " : "¿ No tienes una cuenta ? -> Registrate"}

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-import fireApp from '../Credenciales';
+import {fireApp} from '../Credenciales';
 import { getAuth, signOut } from 'firebase/auth';
-import { Container, Button, Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { collection, doc, getDocs, getFirestore, deleteDoc } from 'firebase/firestore';
-import Prueba from './Prueba';
 import { Link } from 'react-router-dom';
 const auth = getAuth(fireApp);
 const firestore = getFirestore(fireApp);
@@ -50,7 +49,7 @@ const Home = () => {
                   <div className="col">           
                       
                       <Link to="/Create">
-                        <Button>
+                        <Button className='boton-create'>
                           Create
                         </Button>
                       </Link>
@@ -77,7 +76,7 @@ const Home = () => {
                                       <td>{pedido.cantidad}</td>
                                       <td>{pedido.disponibilidad}</td>
                                       <td>
-                                      
+                                          <Link to="/Edit"><Button variant="secondary">editar</Button></Link>
                                           <button onClick={ () => {deletePedido(pedido.id)} } className="btn btn-danger"><i className="fa-solid fa-eraser"></i>Eliminar</button>
                                       </td>
                                   </tr>
@@ -103,3 +102,4 @@ const Home = () => {
 
 export default Home;
 //<Link to="/Create" className='btn btn-secundary mt-2 mb-2'><h4 className='letra-create'>Create here!</h4></Link>
+
