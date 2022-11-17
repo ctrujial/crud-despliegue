@@ -5,6 +5,12 @@ import { getAuth, signOut } from 'firebase/auth';
 import { Button } from 'react-bootstrap';
 import { collection, doc, getDocs, getFirestore, deleteDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
+
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
+
 const auth = getAuth(fireApp);
 const firestore = getFirestore(fireApp);
 
@@ -26,10 +32,33 @@ const Home = () => {
     )
     console.log(pedido)
   }
+
+  // mensaje de eliminar
+  const confirmEliminar = (id) => {// aca creo el mensase en una funcion flecha
+    MySwal.fire({
+      title: 'Estas seguro de eliminarlo?',
+      text: "al confirmar quedara completamente eliminado!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deletePedido(id)
+        Swal.fire(
+          'Eliminado!',
+          'Eliminado correctamente.',
+          'success'
+        )
+      }
+    })
+  }
   //4 funcion para eliminar
   const deletePedido = async (id) => {
        const pedidoDoc =  doc(firestore, "pedido", id)
        await deleteDoc(pedidoDoc)
+       confirmEliminar()
        getPedido()
   }
   //
@@ -87,11 +116,14 @@ const Home = () => {
                   </div>
               </div>
           </div>
-
+          
+          <div className='boton-eliminar'>
           <Button
             onClick={()=> signOut(auth)}>
             Cerrar sesion
           </Button>
+          </div>
+          
       
     </>
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getDoc, updateDoc, doc } from "firebase/firestore"
 import { fireApp } from "../Credenciales";
+import { Container } from 'react-bootstrap'
 
 const Edit = () => {
    // 1. configurar los hoots 
@@ -48,6 +49,9 @@ const Edit = () => {
   }, [] )
 
   return (
+<>
+    <Container> 
+
     <div className='container-create'>
         <div className='row'>
             <div className='col'> 
@@ -85,13 +89,17 @@ const Edit = () => {
                 />
                 </div>
 
-                <button type='submit' className="btn btn-primary">Edit</button>
+                <div className="div-btonEditar">
+                  <button type='submit' className="btn btn-primary">Edit</button>
+                </div>
 
             </form>
 
             </div>
         </div>
     </div>
+    </Container> 
+    </>
     )
 }
 

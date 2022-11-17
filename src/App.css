@@ -1,4 +1,4 @@
-.container-home {
+.container-app {
     text-align: center;
     background-color: rgb(7, 6, 6);
     color: aliceblue;
@@ -8,3 +8,13 @@
     margin: 10px;
   }
 
+  .div-btonEditar, .div-btonCreate {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .boton-eliminar{
+    display: flex;
+    justify-content: space-around;
+    margin: 4px;
+  }
