@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-
 import {fireApp} from '../Credenciales';
 import { getAuth, signOut } from 'firebase/auth';
-import { Button } from 'react-bootstrap';
+import { Button, Navbar,Container,Nav } from 'react-bootstrap';
 import { collection, doc, getDocs, getFirestore, deleteDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 
@@ -45,6 +44,7 @@ const Home = () => {
       confirmButtonText: 'Si, Eliminar!'
     }).then((result) => {
       if (result.isConfirmed) {
+        // si confirma
         deletePedido(id)
         Swal.fire(
           'Eliminado!',
@@ -58,7 +58,6 @@ const Home = () => {
   const deletePedido = async (id) => {
        const pedidoDoc =  doc(firestore, "pedido", id)
        await deleteDoc(pedidoDoc)
-       confirmEliminar()
        getPedido()
   }
   //
@@ -75,22 +74,37 @@ const Home = () => {
         <div className="container-home">
               
               <div className="row">
-                  <div className="col">           
-                      
-                      <Link to="/Create">
-                        <Button className='boton-create'>
-                          Create
-                        </Button>
-                      </Link>
+                  <div className="col">  
+
+                      <Navbar bg="primary" variant="light">
+                        <Container>
+                          <Link to="/Create">
+                              <Button bg="light">
+                               Create
+                              </Button>
+                          </Link>
+                          <br />
+                          <Button>
+                            Buscar
+                          </Button>
+                          <br />
+                          <Button
+                            onClick={()=> signOut(auth)}>
+                            Cerrar sesion
+                          </Button>
+                          
+                        </Container>
+                      </Navbar>
+
 
                       <div>
                       </div>
 
-                      <table className='table table-dark table-hover'>
+                      <table className='table table-light table-hover'>
                           <thead>
                               <tr>
                                   <th>#</th>
-                                  <th>producto</th>
+                                  <th className='producto'>producto</th>
                                   <th>cantidad</th>
                                   <th>disponibilidad</th>
                                   <th>Action</th>
@@ -106,7 +120,7 @@ const Home = () => {
                                       <td>{pedido.disponibilidad}</td>
                                       <td>
                                           <Link to="/Edit"><Button variant="secondary">editar</Button></Link>
-                                          <button onClick={ () => {deletePedido(pedido.id)} } className="btn btn-danger"><i className="fa-solid fa-eraser"></i>Eliminar</button>
+                                          <button onClick={ () => {confirmEliminar(pedido)} } className="btn btn-danger"><i className="fa-solid fa-eraser"></i>Eliminar</button>
                                       </td>
                                   </tr>
                               )) }
@@ -118,10 +132,7 @@ const Home = () => {
           </div>
           
           <div className='boton-eliminar'>
-          <Button
-            onClick={()=> signOut(auth)}>
-            Cerrar sesion
-          </Button>
+          
           </div>
           
       

@@ -101,7 +101,7 @@ const Create = () => {
             </div>
 
             <div className='div-btonCreate'>
-              <button type='submit' className="btn btn-primary">Store</button>
+              <button type='submit' className="btn btn-primary">Save</button>
             </div>
 
           </form>

@@ -1,7 +1,6 @@
 .container-app {
     text-align: center;
-    background-color: rgb(7, 6, 6);
-    color: aliceblue;
+    color: rgb(26, 28, 29);
   }
 
   .boton-create{
@@ -17,4 +16,8 @@
     display: flex;
     justify-content: space-around;
     margin: 4px;
+  }
+
+  .producto{
+    background-color: gray;
   }
