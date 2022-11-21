@@ -32,9 +32,7 @@ const Create = () => {
       confirmstore()// se invoca el mensaje de confirmacion
       navigate('/')//aca nos lleva a la rura raiz = show
       //console.log(e.target[1].value) muestra el nombre
-      //console.log(e.target[1].value) muestra la cedula
-      
-      
+      //console.log(e.target[1].value) muestra la cedula     
     }
 
     const mensajeError = ()=>{
