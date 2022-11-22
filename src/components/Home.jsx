@@ -120,7 +120,7 @@ const Home = () => {
                                       <td>{pedido.disponibilidad}</td>
                                       <td>
                                           <Link to="/Edit"><Button variant="secondary">editar</Button></Link>
-                                          <button onClick={ () => {confirmEliminar(pedido)} } className="btn btn-danger"><i className="fa-solid fa-eraser"></i>Eliminar</button>
+                                          <button onClick={ () => {confirmEliminar(pedido.id)} } className="btn btn-danger"><i className="fa-solid fa-eraser"></i>Eliminar</button>
                                       </td>
                                   </tr>
                               )) }
